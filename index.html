@@ -3,118 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diagnóstico NR-1: SF</title>
+    <title>Diagnóstico NR-1: Secretaria de Finanças</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
-        <header>
-            <h1>Diagnóstico NR-1</h1>
-            <h2>Segurança e Saúde em Secretaria de Finanças</h2>
-            
-            <div class="progress-container">
-                <div class="progress-text">Pergunta <span id="current-q-num">1</span> de 10</div>
-                <div class="progress-bar-bg">
-                    <div class="progress-bar-fill" id="progress-bar"></div>
+        <div id="intro-screen">
+            <header>
+                <h1>Diagnóstico de Segurança NR-1</h1>
+                <h2>Secretaria de Finanças</h2>
+                <p>Selecione o seu perfil para iniciar a avaliação correta:</p>
+            </header>
+
+            <div class="profile-selection">
+                <div class="profile-card" onclick="iniciarQuiz('gestor')">
+                    <h3>Sou Gestor / Chefia</h3>
+                    <p>Responda sobre processos, documentos legais, contratos e gestão de equipe.</p>
+                </div>
+                <div class="profile-card" onclick="iniciarQuiz('servidor')">
+                    <h3>Sou Servidor / Colaborador</h3>
+                    <p>Responda sobre o seu dia a dia, conforto, treinamento e ambiente de trabalho.</p>
                 </div>
             </div>
-        </header>
+        </div>
 
-        <form id="quizForm">
-            
-            <div class="question-step active" data-index="1">
-                <h3>1. Sobre o Programa de Gerenciamento de Riscos (PGR)</h3>
-                <p>Qual a situação atual da documentação de segurança do trabalho na Secretaria?</p>
-                <label><input type="radio" name="q1" value="3"> (A) Existe um documento atualizado (PGR) disponível para consulta.</label>
-                <label><input type="radio" name="q1" value="2"> (B) Existe um documento antigo (PPRA) arquivado na gaveta.</label>
-                <label><input type="radio" name="q1" value="1"> (C) Não há conhecimento sobre documento formal de riscos.</label>
+        <div id="quiz-screen" class="hidden">
+            <div class="quiz-header">
+                <h2 id="quiz-title">Avaliando...</h2>
+                <div class="progress-container">
+                    <div class="progress-text">Pergunta <span id="current-q-num">1</span> de 10</div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progress-bar"></div>
+                    </div>
+                </div>
             </div>
 
-            <div class="question-step" data-index="2">
-                <h3>2. Mobiliário e Ergonomia</h3>
-                <p>Como são as estações de trabalho (cadeiras, mesas e monitores)?</p>
-                <label><input type="radio" name="q2" value="3"> (A) Análise ergonômica feita; cadeiras ajustáveis e monitores na altura correta.</label>
-                <label><input type="radio" name="q2" value="2"> (B) Mobiliário padrão, mas com improvisos (livros, almofadas) para conforto.</label>
-                <label><input type="radio" name="q2" value="1"> (C) Mobiliário quebrado/inadequado; queixas de dor são ignoradas.</label>
-            </div>
+            <form id="quizForm">
+                <div id="question-container"></div>
 
-            <div class="question-step" data-index="3">
-                <h3>3. Instalações Elétricas e Cabos</h3>
-                <p>Observe a fiação dos computadores. Como estão organizados?</p>
-                <label><input type="radio" name="q3" value="3"> (A) Cabos em canaletas ou amarrados; sem fios no caminho.</label>
-                <label><input type="radio" name="q3" value="2"> (B) Fiação desordenada atrás das mesas, mas não atrapalha a passagem.</label>
-                <label><input type="radio" name="q3" value="1"> (C) Uso de "benjamins", extensões em cascata ou fios no chão de passagem.</label>
-            </div>
-
-            <div class="question-step" data-index="4">
-                <h3>4. Preparação para Emergências</h3>
-                <p>Em caso de princípio de incêndio hoje, qual seria a reação?</p>
-                <label><input type="radio" name="q4" value="3"> (A) Equipe conhece brigadistas e rotas; extintores válidos e livres.</label>
-                <label><input type="radio" name="q4" value="2"> (B) Existem extintores, mas ninguém sabe operar ou por onde sair.</label>
-                <label><input type="radio" name="q4" value="1"> (C) Extintores vencidos/bloqueados ou saídas trancadas.</label>
-            </div>
-
-            <div class="question-step" data-index="5">
-                <h3>5. Treinamento Inicial</h3>
-                <p>Novos servidores recebem instruções sobre segurança?</p>
-                <label><input type="radio" name="q5" value="3"> (A) Sim, treinamento formal sobre riscos e emergências.</label>
-                <label><input type="radio" name="q5" value="2"> (B) Apenas instruções verbais informais de colegas.</label>
-                <label><input type="radio" name="q5" value="1"> (C) Nenhuma instrução específica sobre segurança.</label>
-            </div>
-
-            <div class="question-step" data-index="6">
-                <h3>6. Climatização e Qualidade do Ar</h3>
-                <p>Como é a manutenção do ar-condicionado e ventilação?</p>
-                <label><input type="radio" name="q6" value="3"> (A) Plano de manutenção (PMOC) ativo; temperatura confortável.</label>
-                <label><input type="radio" name="q6" value="2"> (B) Limpeza apenas quando o aparelho falha.</label>
-                <label><input type="radio" name="q6" value="1"> (C) Ambiente abafado, cheiro de mofo ou umidade visível.</label>
-            </div>
-
-            <div class="question-step" data-index="7">
-                <h3>7. Fatores Psicossociais</h3>
-                <p>Como é gerenciada a pressão por prazos e metas?</p>
-                <label><input type="radio" name="q7" value="3"> (A) Há picos, mas com diálogo e apoio da gestão.</label>
-                <label><input type="radio" name="q7" value="2"> (B) Pressão constante considerada "normal", sem apoio mental.</label>
-                <label><input type="radio" name="q7" value="1"> (C) Ambiente hostil, cobranças excessivas, gritos ou medo.</label>
-            </div>
-
-            <div class="question-step" data-index="8">
-                <h3>8. Registro de Incidentes</h3>
-                <p>Se um funcionário tropeçar (sem gravidade), o que acontece?</p>
-                <label><input type="radio" name="q8" value="3"> (A) Reportado formalmente para correção imediata da causa.</label>
-                <label><input type="radio" name="q8" value="2"> (B) Vira comentário, mas nada é registrado.</label>
-                <label><input type="radio" name="q8" value="1"> (C) Funcionário desencorajado a falar para "não criar problemas".</label>
-            </div>
-
-            <div class="question-step" data-index="9">
-                <h3>9. Gestão de Terceiros</h3>
-                <p>Como é a segurança da limpeza/vigilância?</p>
-                <label><input type="radio" name="q9" value="3"> (A) Integrados na análise de risco e recebem orientações.</label>
-                <label><input type="radio" name="q9" value="2"> (B) Vista como responsabilidade exclusiva da empresa contratada.</label>
-                <label><input type="radio" name="q9" value="1"> (C) Realizam tarefas de risco sem intervenção da gestão.</label>
-            </div>
-
-            <div class="question-step" data-index="10">
-                <h3>10. Representação de Segurança</h3>
-                <p>Existe responsável pela segurança (CIPA/Designado)?</p>
-                <label><input type="radio" name="q10" value="3"> (A) Sim, CIPA ativa ou designado atuante.</label>
-                <label><input type="radio" name="q10" value="2"> (B) Existe nome no papel apenas para burocracia.</label>
-                <label><input type="radio" name="q10" value="1"> (C) Ninguém responsável.</label>
-            </div>
-
-            <div class="nav-buttons">
-                <button type="button" id="btn-prev" onclick="changeStep(-1)" disabled>Anterior</button>
-                <button type="button" id="btn-next" onclick="changeStep(1)">Próximo</button>
-            </div>
-        </form>
+                <div class="nav-buttons">
+                    <button type="button" id="btn-prev" onclick="changeStep(-1)" disabled>Anterior</button>
+                    <button type="button" id="btn-next" onclick="changeStep(1)">Próximo</button>
+                </div>
+            </form>
+        </div>
 
         <div id="resultado" class="result-box hidden">
-            <h2 id="resultTitle">Resultado</h2>
+            <h2 id="resultTitle">Resultado do Diagnóstico</h2>
             <p><strong>Pontuação:</strong> <span id="scoreValue">0</span> de 30</p>
             <p id="resultText"></p>
             <div id="recommendation"></div>
-            <button type="button" onclick="location.reload()" style="margin-top: 20px;">Refazer Diagnóstico</button>
+            <button type="button" onclick="location.reload()" style="margin-top: 20px; background-color: #34495e;">Voltar ao Início</button>
         </div>
     </div>
 
